@@ -6,7 +6,7 @@
             <h1><i class="fa fa-tags"></i> {{ $pageTitle }}</h1>
             <p>{{ $pageSubTitle }}</p>
         </div>
-        <a href="{{ route('admin.sliders.create') }}" class="btn btn-primary pull-right">Add New Slider</a>
+        <a href="{{ route('admin.categories.create') }}" class="btn btn-primary pull-right">Add new category</a>
     </div>
     @include('backend.partials.flash')
     <div class="row">
@@ -17,24 +17,21 @@
                         <thead>
                         <tr>
                             <th> # </th>
-                            <th>Image</th>
-                            <th>Title</th>
-                            <th>Title Two</th>
-                            <th>Sorting</th>
+                            <th>Name</th>
+                            <th>Description</th>
                             <th class="text-center">Status</th>
                             <th style="width:100px; min-width:100px;" class="text-center text-danger"><i class="fa fa-bolt"> </i></th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($sliders as $key=>$slider)
+                        @php $sl = 0 @endphp
+                        @foreach($categories as $key=>$category)
                             <tr>
-                                <td>{{ ++$key }}</td>
-                                <td><img src="{{ asset('storage/'.$slider->image) }}" width="80"></td>
-                                <td>{{ $slider->title_one }}</td>
-                                <td>{{ $slider->title_two }}</td>
-                                <td>{{ $slider->sorting }}</td>
+                                <td>{{ ++$sl }}</td>
+                                <td>{{ $category->name }}</td>
+                                <td>{{ $category->short_desc }}</td>
                                 <td class="text-center">
-                                    @if ($slider->status == 1)
+                                    @if ($category->status == 1)
                                         <span class="badge badge-success">Yes</span>
                                     @else
                                         <span class="badge badge-danger">No</span>
@@ -42,8 +39,8 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="btn-group" role="group" aria-label="Second group">
-                                        <a href="{{ route('admin.sliders.edit', $slider->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
-                                        <a onclick="return confirm('Are you sure?')" href="{{ route('admin.sliders.delete', $slider->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                        <a href="{{ route('admin.categories.edit', $category->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
+                                        <a onclick="return confirm('Are you sure?')" href="{{ route('admin.categories.delete', $category->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                                     </div>
                                 </td>
                             </tr>

@@ -18,8 +18,9 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->string('name');
+            $table->string('sku');
             $table->float('price')->default(0);
-            $table->float('vat')->default(0);
+            $table->integer('minimum_qty')->default(0);
             $table->enum('unit',['pcs','packet','kg','ltr']);
             $table->boolean('status')->default(0);
             $table->timestamps();

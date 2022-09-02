@@ -6,7 +6,7 @@
             <h1><i class="fa fa-tags"></i> {{ $pageTitle }}</h1>
             <p>{{ $pageSubTitle }}</p>
         </div>
-        <a href="{{ route('admin.services.create') }}" class="btn btn-primary pull-right">Add New Service</a>
+        <a href="{{ route('admin.custommers.create') }}" class="btn btn-primary pull-right">Add new customer</a>
     </div>
     @include('backend.partials.flash')
     <div class="row">
@@ -17,22 +17,25 @@
                         <thead>
                         <tr>
                             <th> # </th>
-                            <th>Image</th>
-                            <th>Title</th>
-                            <th>Sorting</th>
+                            <th>Name</th>
+                            <th>Mobile</th>
+                            <th>Email</th>
+                            <th>Address</th>
                             <th class="text-center">Status</th>
                             <th style="width:100px; min-width:100px;" class="text-center text-danger"><i class="fa fa-bolt"> </i></th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($services as $key=>$service)
+                        @php $sl = 0 @endphp
+                        @foreach($custommers as $key=>$customer)
                             <tr>
-                                <td>{{ ++$key }}</td>
-                                <td><img src="{{ asset('storage/'.$service->image) }}" width="80"></td>
-                                <td>{{ $service->title }}</td>
-                                <td>{{ $service->sorting }}</td>
+                                <td>{{ ++$sl }}</td>
+                                <td>{{ $customer->name }}</td>
+                                <td>{{ $customer->mobile }}</td>
+                                <td>{{ $customer->email }}</td>
+                                <td>{{ $customer->address }}</td>
                                 <td class="text-center">
-                                    @if ($service->status == 1)
+                                    @if ($customer->status == 1)
                                         <span class="badge badge-success">Yes</span>
                                     @else
                                         <span class="badge badge-danger">No</span>
@@ -40,8 +43,8 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="btn-group" role="group" aria-label="Second group">
-                                        <a href="{{ route('admin.services.edit', $service->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
-                                        <a onclick="return confirm('Are you sure?')" href="{{ route('admin.services.delete', $service->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                        <a href="{{ route('admin.customers.edit', $customer->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
+                                        <a onclick="return confirm('Are you sure?')" href="{{ route('admin.customers.delete', $customer->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                                     </div>
                                 </td>
                             </tr>
