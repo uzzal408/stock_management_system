@@ -14,6 +14,18 @@
                 <span class="app-menu__label">Categories</span>
             </a>
         </li>
+        <li>
+            <a class="app-menu__item {{ Route::currentRouteName() == 'admin.suppliers.index' ? 'active' : '' }}" href="{{ route('admin.suppliers.index') }}">
+                <i class="app-menu__icon fa fa-user-circle"></i>
+                <span class="app-menu__label">Suppliers</span>
+            </a>
+        </li>
+        <li>
+            <a class="app-menu__item {{ Route::currentRouteName() == 'admin.customers.index' ? 'active' : '' }}" href="{{ route('admin.customers.index') }}">
+                <i class="app-menu__icon fa fa-user-times"></i>
+                <span class="app-menu__label">Customers</span>
+            </a>
+        </li>
 
 
         <li>

@@ -6,7 +6,7 @@
             <h1><i class="fa fa-tags"></i> {{ $pageTitle }}</h1>
             <p>{{ $pageSubTitle }}</p>
         </div>
-        <a href="{{ route('admin.custommers.create') }}" class="btn btn-primary pull-right">Add new customer</a>
+        <a href="{{ route('admin.customers.create') }}" class="btn btn-primary pull-right">Add new customer</a>
     </div>
     @include('backend.partials.flash')
     <div class="row">
@@ -27,7 +27,7 @@
                         </thead>
                         <tbody>
                         @php $sl = 0 @endphp
-                        @foreach($custommers as $key=>$customer)
+                        @foreach($customers as $key=>$customer)
                             <tr>
                                 <td>{{ ++$sl }}</td>
                                 <td>{{ $customer->name }}</td>

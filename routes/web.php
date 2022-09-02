@@ -35,4 +35,22 @@ Route::group(['middleware'=> 'auth'],function () {
         Route::post('update','App\Http\Controllers\Admin\CategoryController@update')->name('admin.categories.update');
         Route::get('/{id}/delete','App\Http\Controllers\Admin\CategoryController@delete')->name('admin.categories.delete');
     });
+
+    Route::group(['prefix'=> 'customers'],function (){
+        Route::get('/','App\Http\Controllers\Admin\CustomerController@index')->name('admin.customers.index');
+        Route::get('/create','App\Http\Controllers\Admin\CustomerController@create')->name('admin.customers.create');
+        Route::post('/store','App\Http\Controllers\Admin\CustomerController@store')->name('admin.customers.store');
+        Route::get('/{id}/edit','App\Http\Controllers\Admin\CustomerController@edit')->name('admin.customers.edit');
+        Route::post('update','App\Http\Controllers\Admin\CustomerController@update')->name('admin.customers.update');
+        Route::get('/{id}/delete','App\Http\Controllers\Admin\CustomerController@delete')->name('admin.customers.delete');
+    });
+
+    Route::group(['prefix'=> 'suppliers'],function (){
+        Route::get('/','App\Http\Controllers\Admin\SupplierController@index')->name('admin.suppliers.index');
+        Route::get('/create','App\Http\Controllers\Admin\SupplierController@create')->name('admin.suppliers.create');
+        Route::post('/store','App\Http\Controllers\Admin\SupplierController@store')->name('admin.suppliers.store');
+        Route::get('/{id}/edit','App\Http\Controllers\Admin\SupplierController@edit')->name('admin.suppliers.edit');
+        Route::post('update','App\Http\Controllers\Admin\SupplierController@update')->name('admin.suppliers.update');
+        Route::get('/{id}/delete','App\Http\Controllers\Admin\SupplierController@delete')->name('admin.suppliers.delete');
+    });
 });

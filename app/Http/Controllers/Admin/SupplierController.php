@@ -2,50 +2,49 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Contracts\CustomerContract;
+use App\Contracts\SupplierContract;
 use App\Http\Controllers\BaseController;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class CustomerController extends  BaseController
+class SupplierController extends BaseController
 {
     protected $repository;
 
-    public function __construct(CustomerContract $contract)
+    public function __construct(SupplierContract $contract)
     {
         $this->repository = $contract;
     }
 
     public function index()
     {
-        $customers = $this->repository->listCustomer();
-        $this->setPageTitle('Customers','List of all customers');
-        return view('backend.customers.index',compact('customers'));
+        $suppliers = $this->repository->listSupplier();
+        $this->setPageTitle('Suppliers','List of all suppliers');
+        return view('backend.suppliers.index',compact('suppliers'));
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create(){
-        $this->setPageTitle('Customers','Create New Customer');
-        return view('backend.customers.create');
+        $this->setPageTitle('Suppliers','Create New Supplier');
+        return view('backend.suppliers.create');
     }
 
     public function store(Request $request){
         $this->validate($request,[
-            'name'         => 'required|max:191|unique:customers',
+            'name'         => 'required|max:191|unique:suppliers',
         ]);
 
         $params = $request->except('_token');
 
 
-        $content = $this->repository->createCustomer($params);
+        $content = $this->repository->createSupplier($params);
 
         if(!$content){
             return $this->responseRedirectBack('Error occurred while creating content','error',true,true);
         }
 
-        return $this->responseRedirect('admin.customers.index','Content Added Successfully','success',false,false);
+        return $this->responseRedirect('admin.suppliers.index','Content Added Successfully','success',false,false);
     }
 
     /**
@@ -54,9 +53,9 @@ class CustomerController extends  BaseController
      */
     public function edit($id)
     {
-        $t_customer = $this->repository->findCustomerById($id);
-        $this->setPageTitle('Customers','Edit category : '.$t_customer->name);
-        return view('backend.customers.edit',compact('t_customer'));
+        $t_supplier = $this->repository->findSupplierById($id);
+        $this->setPageTitle('Suppliers','Edit supplier : '.$t_supplier->name);
+        return view('backend.suppliers.edit',compact('t_supplier'));
     }
 
     /**
@@ -72,7 +71,7 @@ class CustomerController extends  BaseController
 
         $params = $request->except('_token');
 
-        $content = $this->repository->updateCustomer($params);
+        $content = $this->repository->updateSupplier($params);
 
         if(!$content){
             return $this->responseRedirectBack('Error occurred while updating content','error',true,true);
@@ -82,12 +81,12 @@ class CustomerController extends  BaseController
     }
 
     public function delete($id){
-        $content = $this->repository->deleteCustomer($id);
+        $content = $this->repository->deleteSupplier($id);
 
         if(!$content){
             return $this->responseRedirectBack('Error occurred while deleting content','error',true,true);
         }
 
-        return $this->responseRedirect('admin.customers.index','Content deleted successfully','success',false,false);
+        return $this->responseRedirect('admin.suppliers.index','Content deleted successfully','success',false,false);
     }
 }
