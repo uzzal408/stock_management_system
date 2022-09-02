@@ -32,7 +32,7 @@
                         <div class="form-group">
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" id="status" name="status" {{ (old('status',$t_about->status)) == 1 ? 'checked' : '' }} />Enable
+                                    <input class="form-check-input" type="checkbox" id="status" name="status" {{ (old('status',$t_category->status)) == 1 ? 'checked' : '' }} />Enable
                                 </label>
                             </div>
                         </div>

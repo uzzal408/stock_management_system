@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->nullable();
             $table->string('mobile')->nullable();
+            $table->string('address')->nullable();
             $table->boolean('status')->default(0);
             $table->timestamps();
         });

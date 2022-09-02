@@ -8,12 +8,12 @@
             </a>
         </li>
 
-{{--        <li>--}}
-{{--            <a class="app-menu__item {{ Route::currentRouteName() == 'admin.sliders.index' ? 'active' : '' }}" href="{{ route('admin.sliders.index') }}">--}}
-{{--                <i class="app-menu__icon fa fa-photo"></i>--}}
-{{--                <span class="app-menu__label">Sliders</span>--}}
-{{--            </a>--}}
-{{--        </li>--}}
+        <li>
+            <a class="app-menu__item {{ Route::currentRouteName() == 'admin.categories.index' ? 'active' : '' }}" href="{{ route('admin.categories.index') }}">
+                <i class="app-menu__icon fa fa-photo"></i>
+                <span class="app-menu__label">Categories</span>
+            </a>
+        </li>
 
 
         <li>
