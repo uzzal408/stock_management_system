@@ -25,7 +25,7 @@
                             <select name="category_id" class="form-control" id="category_id">
                                 <option value=" ">Select a category</option>
                                 @foreach($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    <option value="{{ $category->id }}"  {{ (old('category_id')==$category->id) ? 'selected' : '' }}>{{ $category->name }}</option>
                                 @endforeach
                             </select>
                             @error('category_id')<p style="color: red">{{ $message }}</p> @enderror
@@ -52,10 +52,10 @@
                             <label class="control-label" for="unit">Unit<span class="m-l-5 text-danger"> *</span></label>
                             <select name="unit" class="form-control" id="unit">
                                 <option value=" ">Select a unit</option>
-                                <option value="pcs">PCS</option>
-                                <option value="packet">Packet</option>
-                                <option value="kg">KG</option>
-                                <option value="ltr">Litre</option>
+                                <option value="pcs" {{ (old('unit')=='pcs') ? 'selected' : '' }}>PCS</option>
+                                <option value="packet" {{ (old('unit')=='pcs') ? 'selected' : '' }}>Packet</option>
+                                <option value="kg" {{ (old('unit')=='pcs') ? 'selected' : '' }}>KG</option>
+                                <option value="ltr" {{ (old('unit')=='pcs') ? 'selected' : '' }}>Litre</option>
                             </select>
                             @error('unit')<p style="color: red">{{ $message }}</p> @enderror
                         </div>

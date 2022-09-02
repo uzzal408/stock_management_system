@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('home');
 });
 
 Auth::routes();
@@ -53,4 +53,14 @@ Route::group(['middleware'=> 'auth'],function () {
         Route::post('update','App\Http\Controllers\Admin\SupplierController@update')->name('admin.suppliers.update');
         Route::get('/{id}/delete','App\Http\Controllers\Admin\SupplierController@delete')->name('admin.suppliers.delete');
     });
+
+    Route::group(['prefix'=> 'products'],function (){
+        Route::get('/','App\Http\Controllers\Admin\ProductController@index')->name('admin.products.index');
+        Route::get('/create','App\Http\Controllers\Admin\ProductController@create')->name('admin.products.create');
+        Route::post('/store','App\Http\Controllers\Admin\ProductController@store')->name('admin.products.store');
+        Route::get('/{id}/edit','App\Http\Controllers\Admin\ProductController@edit')->name('admin.products.edit');
+        Route::post('update','App\Http\Controllers\Admin\ProductController@update')->name('admin.products.update');
+        Route::get('/{id}/delete','App\Http\Controllers\Admin\ProductController@delete')->name('admin.products.delete');
+    });
+
 });

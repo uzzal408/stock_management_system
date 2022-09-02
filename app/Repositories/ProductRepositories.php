@@ -3,19 +3,21 @@ namespace App\Repositories;
 
 use App\Contracts\ProductContract;
 use App\Models\Product;
+use App\Models\Stock;
 use App\Repositories\BaseRepository;
 use Illuminate\Http\UploadedFile;
 use App\Traits\UploadAble;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Doctrine\Instantiator\Exception\InvalidArgumentException;
+use Illuminate\Support\Facades\DB;
 
 
 class ProductRepositories extends BaseRepository implements ProductContract
 {
     use UploadAble;
 
-    public function __construct(ProductContract $model)
+    public function __construct(Product $model)
     {
         parent::__construct($model);
         $this->model = $model;
@@ -57,9 +59,18 @@ class ProductRepositories extends BaseRepository implements ProductContract
             }
             $status   = $collection->has('status') ? 1 : 0 ;
             $merge = $collection->merge(compact('image','status'));
-            $content = new Product($merge->all());
-            $content->save();
-            return $content;
+            try {
+                DB::beginTransaction();
+                $content = new Product($merge->all());
+                $content->save();
+                $stock = new Stock();
+                $stock->product_id = $content->id;
+                $stock->save();
+                DB::commit();
+                return $content;
+            }catch (\Exception $e){
+                DB::rollBack();
+            }
 
         }catch (QueryException $exception){
             throw  new InvalidArgumentException($exception->getMessage());
