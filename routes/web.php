@@ -74,5 +74,10 @@ Route::group(['middleware'=> 'auth'],function () {
         Route::post('sell','App\Http\Controllers\Admin\StockOutController@searchByCategory')->name('sell.stock.search');
         Route::post('stock-out','App\Http\Controllers\Admin\StockOutController@stockOut')->name('stock.out');
     });
+    Route::group(['prefix'=> 'return'],function (){
+        Route::get('/','App\Http\Controllers\Admin\ReturnController@index')->name('admin.return.index');
+        Route::post('search','App\Http\Controllers\Admin\ReturnController@searchByCategory')->name('return.stock.search');
+        Route::post('return-add','App\Http\Controllers\Admin\ReturnController@returnItem')->name('stock.return');
+    });
 
 });
