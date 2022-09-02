@@ -63,4 +63,16 @@ Route::group(['middleware'=> 'auth'],function () {
         Route::get('/{id}/delete','App\Http\Controllers\Admin\ProductController@delete')->name('admin.products.delete');
     });
 
+    Route::group(['prefix'=> 'reports'],function (){
+        Route::get('/stocks','App\Http\Controllers\Admin\ReportController@stock')->name('admin.reports.stock');
+    });
+    Route::group(['prefix'=> 'stocks'],function (){
+        Route::get('/purchase','App\Http\Controllers\Admin\PurchaseController@purchase')->name('admin.purchase.index');
+        Route::post('purchase','App\Http\Controllers\Admin\PurchaseController@searchByCategory')->name('stock.search');
+        Route::post('stock-in','App\Http\Controllers\Admin\PurchaseController@inStock')->name('stock.in');
+        Route::get('/sell','App\Http\Controllers\Admin\StockOutController@sell')->name('admin.sell.index');
+        Route::post('sell','App\Http\Controllers\Admin\StockOutController@searchByCategory')->name('sell.stock.search');
+        Route::post('stock-out','App\Http\Controllers\Admin\StockOutController@stockOut')->name('stock.out');
+    });
+
 });

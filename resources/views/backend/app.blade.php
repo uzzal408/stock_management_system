@@ -11,6 +11,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/css/font-awesome/4.7.0/css/font-awesome.min.css') }}"/>
     <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css" rel="stylesheet">
+    @livewireStyles
+    @livewireScripts
 </head>
 <body class="app sidebar-mini rtl">
 @include('backend.partials.header')
@@ -37,8 +39,8 @@
 <script>
     $(document).ready(function() {
         $('#list').select2();
-        $('#menu').select2();
-        $('#page_id').select2();
+        $('#cate').select2();
+        $('#supplier').select2();
     });
     $(document).ready(function () {
         $('#sampleTable').DataTable({
